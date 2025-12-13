@@ -2,7 +2,8 @@
 
 ## Akses Admin:
 - username: Administrator
-- Password: 123456
+- Password: tama123
+  
 
 ## Akses Petugas:
 - username: Officer
