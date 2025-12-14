@@ -22,7 +22,7 @@
 
                         <div style="text-align: center;">
                             <h3>Laporan Harian </h3>
-                            <h3>OPCS</h3>
+                            <h3>NadiWarga</h3>
                         </div>
                     </td></tr>
 
