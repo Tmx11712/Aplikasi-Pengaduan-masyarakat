@@ -124,8 +124,8 @@
   <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
     <div class="container d-flex">
       <div class="contact-info mr-auto">
-         <i class="icofont-envelope"></i> <a href="mailto:contact@example.com">ahmadefendi@gmail.com</a>
-        <i class="icofont-phone"></i> +62 852-4340-2748
+         <i class="icofont-envelope"></i> <a href="mailto:contact@example.com">ikangoreng196@gmail.com</a>
+        <i class="icofont-phone"></i> +62 895-4237-19600
       </div>
       <div class="social-links">
         <a href="#" class="twitter"><i class="icofont-twitter"></i></a>

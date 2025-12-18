@@ -107,7 +107,7 @@
                                 <a href="#" class="auth-logo-dark">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">
-                                            <img src="{{asset('assets/images/logo.svg')}}" alt="" class="rounded-circle" height="34">
+                                            <img src="{{asset('assets/images/logo-nadiwarga.png')}}" alt="" class="rounded-circle" height="100">
                                         </span>
                                     </div>
                                 </a>
