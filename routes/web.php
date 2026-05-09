@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// Auth::routes();
 Route::get('/', [DashboardController::class, 'welcome']);
 Route::get('user/register', [FrontendController::class, 'register'])->name('user_register');
 Route::post('user/register/save', [FrontendController::class, 'save']);
@@ -38,6 +37,7 @@ Route::get('user/complaint', [FrontendController::class, 'complaint'])->name('co
 Route::get('user/complaint/detail/{id}', [FrontendController::class, 'detail_complaint'])->name('detail_complaint');
 Route::get('track-complaint', [FrontendController::class, 'track_complaint'])->name('track_complaint');
 Route::post('search-complaint', [FrontendController::class, 'search_complaint'])->name('search_complaint');
+
 Route::get('admin/login', [LoginController::class, 'showFormLogin'])->name('login');
 Route::post('admin/login', [LoginController::class, 'login']);
 Route::get('logout', [LoginController::class, 'logout'])->name('logoutt');
@@ -75,5 +75,3 @@ Route::get('complaints/detail/{id}', [ComplaintController::class, 'detail']);
 
 Route::delete('/admin/complaints/{id}', [ComplaintController::class, 'destroy'])
      ->name('complaints.destroy');
-     
-Route::get('/home', 'HomeController@index')->name('home');

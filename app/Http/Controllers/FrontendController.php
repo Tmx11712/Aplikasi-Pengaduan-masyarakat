@@ -76,10 +76,10 @@ class FrontendController extends Controller
                 Session::put('address', $society->address);
                 return redirect()->route('user_home');
             } else {
-                return redirect()->back()->with(['error' => 'Invalid nik or password']);
+                return redirect()->back()->with(['error' => 'Invalid username or password']);
             }
         } else {
-            return redirect()->back()->with(['error' => 'Invalid nik or password']);
+            return redirect()->back()->with(['error' => 'Invalid username or password']);
         }
     }
 
