@@ -106,7 +106,7 @@
 <script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>  
 <script src="{{asset('assets/libs/sweetalert2/sweetalert2.min.js')}}"></script> 
 <script>
-    $('.btn-delete').click(function(){
+    $(document).on('click', '.btn-delete', function(){
         var user_id = $(this).attr('user-id');
         const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
@@ -117,23 +117,23 @@
         })
 
         swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Apakah anda yakin?',
+        text: "Data yang dihapus tidak dapat dikembalikan!",
         icon: 'warning',
-        showCancelButton: !0,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
+        showCancelButton: true,
+        confirmButtonText: 'Ya, hapus!',
+        cancelButtonText: 'Tidak, batalkan!',
         confirmButtonClass:"btn btn-success mt-2",
         cancelButtonClass:"btn btn-danger ms-2 mt-2",
-        buttonsStyling:!1}).then((result) => {
+        buttonsStyling:false}).then((result) => {
         if (result.isConfirmed) {
             window.location = "{{url('admin/users/delete')}}/"+user_id+"";
         } else if (
             result.dismiss === Swal.DismissReason.cancel
         ) {
             swalWithBootstrapButtons.fire(
-            'Cancelled',
-            'Your imaginary file is safe :)',
+            'Dibatalkan',
+            'Data anda tetap aman :)',
             'error'
             )
         }

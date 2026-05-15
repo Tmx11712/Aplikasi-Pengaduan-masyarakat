@@ -71,19 +71,18 @@
                                         <a href="{{url('admin/complaints/'.$row->id)}}" class="btn btn-danger btn-rounded waves-effect waves-light">
                                             <i class="bx bx-edit font-size-16 align-middle"></i>
                                         </a>
-                                      <a href="#" class="btn btn-warning btn-delete" data-id="{{ $row->id }}">
+                                      <a href="javascript:void(0);" class="btn btn-warning btn-rounded btn-delete" data-id="{{ $row->id }}">
                                             <i class="bx bx-trash-alt"></i>
                                         </a>
                                     </td>
-                                    <form id="form-delete" method="POST" style="display:none;">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-
+                        <form id="form-delete" method="POST" style="display:none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
                     </div>
                 </div>
             </div>
@@ -100,75 +99,40 @@
 <script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>  
 <script src="{{asset('assets/libs/sweetalert2/sweetalert2.min.js')}}"></script> 
 <script>
-    $('.btn-delete').click(function(){
-        var society_id = $(this).attr('society-id');
+    $(document).on('click', '.btn-delete', function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
         const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-            confirmButton: 'btn btn-success mt-2',
-            cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
+            customClass: {
+                confirmButton: 'btn btn-success mt-2',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
         })
 
         swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: !0,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        confirmButtonClass:"btn btn-success mt-2",
-        cancelButtonClass:"btn btn-danger ms-2 mt-2",
-        buttonsStyling:!1}).then((result) => {
-        if (result.isConfirmed) {
-           window.location = "{{url('admin/complaints')}}/"+society_id;
-
-        } else if (
-            result.dismiss === Swal.DismissReason.cancel
-        ) {
-            swalWithBootstrapButtons.fire(
-            'Cancelled',
-            'Your imaginary file is safe :)',
-            'error'
-            )
-        }
+            title: 'Apakah anda yakin?',
+            text: "Data yang dihapus tidak dapat dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Tidak, batalkan!',
+            confirmButtonClass: "btn btn-success mt-2",
+            cancelButtonClass: "btn btn-danger ms-2 mt-2",
+            buttonsStyling: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const form = document.getElementById('form-delete');
+                form.action = "{{url('admin/complaints')}}/" + id;
+                form.submit();
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swalWithBootstrapButtons.fire(
+                    'Dibatalkan',
+                    'Data anda tetap aman :)',
+                    'error'
+                )
+            }
         })
     });
-    $(document).ready(function() {
-        $(document).on('click', '#set_dtl', function() {
-            var username = $(this).data('username');
-            var name = $(this).data('name');
-            var email = $(this).data('email');
-            var privilege = $(this).data('privilege');
-            var outlet = $(this).data('outlet');
-            var status = $(this).data('status');
-            var photo = $(this).data('photo');
-            var created = $(this).data('created');
-            var updated = $(this).data('updated');
-            $('#username').text(username);
-            $('#name').text(name);
-            $('#email').text(email);
-            $('#privilege').text(privilege);
-            $('#outlet').text(outlet);
-            $('#created').text(created);
-            $('#updated').text(updated);
-            $('#img-data').attr('src', "{{asset('avatar/')}}/"+photo);
-
-        })
-    })
-
-    document.querySelectorAll('.btn-delete').forEach(button => {
-    button.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        const id = this.getAttribute('data-id');
-        const form = document.getElementById('form-delete');
-
-        if (confirm("Hapus data ini?")) {
-            form.action = "/admin/complaints/" + id;
-            form.submit();
-        }
-    });
-});
 </script>
 @endpush
